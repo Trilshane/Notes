@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  margin: 10px;
+  justify-content: space-between;
+  align-items: center;
+  .icon {
+    font-size: 25px;
+  }
+  .iconContainer {
+    width: 5%;
+    display: flex;
+    justify-content: space-between;
+  }
+}

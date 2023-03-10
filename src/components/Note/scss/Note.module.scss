@@ -1,0 +1,29 @@
+.container {
+  margin: 10px;
+  width: 98%;
+  height: 90%;
+  position: relative;
+  .title {
+    position: absolute;
+    font-size: 48px;
+    width: 95%;
+    height: 15%;
+    border: none;
+    &:focus {
+      outline: none;
+    }
+  }
+  .content {
+    position: absolute;
+    top: 15%;
+    font-size: 24px;
+    width: 95%;
+    height: 80%;
+    resize: none;
+    border: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
