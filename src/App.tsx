@@ -40,6 +40,10 @@ const App: FC = () => {
     setContentNote("");
   };
 
+  const filteredNotesArr = notesArr.filter((el: noteType) => {
+    return query ? el.title.includes(query) : el;
+  });
+
   return (
     <TitleContext.Provider
       value={{
@@ -53,6 +57,7 @@ const App: FC = () => {
         addNoteinArray,
         now,
         nowTime,
+        filteredNotesArr,
       }}
     >
       <div className={styles.container}>

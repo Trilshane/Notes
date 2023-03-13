@@ -7,12 +7,12 @@ import { noteType } from "../../App";
 import styles from "./scss/NotesList.module.scss";
 
 const NotesList: FC = () => {
-  const { notesArr } = useContext(TitleContext);
+  const { filteredNotesArr } = useContext(TitleContext);
 
   return (
     <div className={styles.container}>
-      {!notesArr.length && <h3>Список задач пуст</h3>}
-      {notesArr.map((el: noteType, i: number) => (
+      {!filteredNotesArr.length && <h3>Список задач пуст</h3>}
+      {filteredNotesArr.map((el: noteType, i: number) => (
         <NoteListElement
           title={el.title}
           time={el.time}
