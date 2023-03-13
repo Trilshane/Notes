@@ -1,8 +1,17 @@
 .container {
-  margin: 10px;
+  margin: 15px;
   width: 98%;
   height: 90%;
   position: relative;
+  .timeZone {
+    text-align: center;
+    .date {
+      padding-right: 5px;
+    }
+    .time {
+      padding-left: 5px;
+    }
+  }
   .title {
     position: absolute;
     font-size: 48px;
@@ -25,5 +34,17 @@
     &:focus {
       outline: none;
     }
+  }
+  .addNoteButton {
+    position: fixed;
+    top: 80%;
+    left: 80%;
+    border-radius: 100px;
+    background-color: red;
+    color: white;
+    font-size: 40px;
+    border: none;
+    padding: 20px 30px;
+    cursor: pointer;
   }
 }

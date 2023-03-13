@@ -2,7 +2,7 @@ import { FC, useContext } from "react";
 
 import { BiSearch } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
-import TitleContext from "../../Cotext";
+import TitleContext from "../../Context";
 
 import styles from "./scss/InputNoteHead.module.scss";
 
