@@ -1,5 +1,5 @@
-import { FC, useContext, useState } from "react";
-import TitleContext from "../../Context";
+import { FC, useContext } from "react";
+import TitleContext, { contectType } from "../../Context";
 
 import styles from "./scss/Note.module.scss";
 
@@ -9,43 +9,66 @@ const Note: FC = () => {
     setTilteNote,
     contentNote,
     setContentNote,
-    addNoteinArray,
     now,
     nowTime,
-  } = useContext(TitleContext);
+    newNoteIsActiveStatus,
+    changeNoteActiveStatus,
+    activeNote,
+    updateNote,
+  } = useContext<contectType>(TitleContext);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.timeZone}>
-        <span className={styles.date}>{now}</span>в
-        <span className={styles.time}>{nowTime}</span>
-      </div>
-      <input
-        className={styles.title}
-        type="text"
-        placeholder="Заголовок"
-        value={titleNote}
-        onChange={(e) => setTilteNote(e.target.value)}
-      />
-      {titleNote && (
-        <textarea
-          className={styles.content}
-          placeholder="Начните ввод"
-          value={contentNote}
-          onChange={(e) => setContentNote(e.target.value)}
-        />
+    <>
+      {newNoteIsActiveStatus && (
+        <div className={styles.container}>
+          <div className={styles.timeZone}>
+            <span className={styles.date}>{now}</span>в
+            <span className={styles.time}>{nowTime}</span>
+          </div>
+          <input
+            className={styles.title}
+            type="text"
+            placeholder="Заголовок"
+            value={titleNote}
+            onChange={(e) => {
+              setTilteNote(e.target.value);
+            }}
+          />
+          {titleNote && (
+            <textarea
+              className={styles.content}
+              placeholder="Начните ввод"
+              value={contentNote}
+              onChange={(e) => setContentNote(e.target.value)}
+            />
+          )}
+        </div>
       )}
-      {titleNote && (
-        <button
-          className={styles.addNoteButton}
-          onClick={() => {
-            addNoteinArray(titleNote, nowTime, contentNote);
-          }}
-        >
-          +
-        </button>
+      {changeNoteActiveStatus && (
+        <div className={styles.container}>
+          <div className={styles.timeZone}>
+            <span className={styles.date}>{now}</span>
+            <span className={styles.time}>{nowTime}</span>
+          </div>
+          <input
+            className={styles.title}
+            type="text"
+            value={activeNote.title}
+            onChange={(e) =>
+              updateNote(activeNote?.id, "title", e.target.value)
+            }
+          />
+          <textarea
+            className={styles.content}
+            placeholder="Начните ввод"
+            value={activeNote.content}
+            onChange={(e) =>
+              updateNote(activeNote?.id, "content", e.target.value)
+            }
+          />
+        </div>
       )}
-    </div>
+    </>
   );
 };
 export default Note;
