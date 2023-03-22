@@ -8,14 +8,51 @@ import styles from "./scss/NotesHead.module.scss";
 import TitleContext, { contectType } from "../../Context";
 
 const NotesHead: FC = () => {
-  const { deleteNote } = useContext<contectType>(TitleContext);
+  const {
+    listView,
+    setListView,
+    deleteNote,
+    setNoteFullScreenStatusView,
+    noteFullScreenStatusView,
+    activeNote,
+    notesArr,
+  } = useContext<contectType>(TitleContext);
   return (
     <div className={styles.container}>
-      <div className={styles.iconContainer}>
-        <AiOutlineUnorderedList className={styles.icon} />
-        <HiOutlineSquares2X2 className={styles.icon} />
+      <div className={styles.buttonContainer}>
+        <button
+          disabled={listView}
+          className={styles.button}
+          onClick={() => {
+            setListView(true);
+            setNoteFullScreenStatusView(false);
+          }}
+        >
+          <AiOutlineUnorderedList />
+        </button>
+        <button
+          disabled={!listView || notesArr.length === 0}
+          className={styles.button}
+          onClick={() => {
+            setListView(false);
+            setNoteFullScreenStatusView(false);
+          }}
+        >
+          <HiOutlineSquares2X2 />
+        </button>
       </div>
-      <BsTrash3 onClick={() => deleteNote()} className={styles.icon} />
+      <button
+        disabled={!activeNote}
+        className={styles.button}
+        onClick={() => {
+          deleteNote();
+          if (noteFullScreenStatusView) {
+            setNoteFullScreenStatusView(false);
+          }
+        }}
+      >
+        <BsTrash3 />
+      </button>
     </div>
   );
 };

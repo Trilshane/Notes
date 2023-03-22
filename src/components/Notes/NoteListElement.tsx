@@ -11,6 +11,7 @@ const NoteListElement: FC<noteType> = ({ title, time, content, id }) => {
     setSelectedNote,
     setChangeNoteActiveStatus,
     setNewNoteIsActiveStatus,
+    selectedNote,
   } = useContext<contectType>(TitleContext);
 
   return (
@@ -22,7 +23,7 @@ const NoteListElement: FC<noteType> = ({ title, time, content, id }) => {
         setChangeNoteActiveStatus(true);
         setNewNoteIsActiveStatus(false);
       }}
-      className={styles.container}
+      className={id === selectedNote ? styles.active : styles.container}
     >
       <h2 className={styles.title}> {title}</h2>
       <div className={styles.timeAndContentZone}>

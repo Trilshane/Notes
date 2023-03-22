@@ -2,12 +2,12 @@ import { FC, useContext } from "react";
 
 import { BiSearch } from "react-icons/bi";
 import { RxCross2 } from "react-icons/rx";
-import TitleContext from "../../Context";
+import TitleContext, { contectType } from "../../Context";
 
 import styles from "./scss/InputNoteHead.module.scss";
 
 const InputNoteHead: FC = () => {
-  const { query, setQuery } = useContext(TitleContext);
+  const { query, setQuery } = useContext<contectType>(TitleContext);
   return (
     <div className={styles.container}>
       <BiSearch className={styles.icon} />

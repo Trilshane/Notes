@@ -3,10 +3,21 @@
   margin: 17px;
   justify-content: space-between;
 
-  .icon {
+  .button {
     font-size: 25px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    color: #bababa;
+    &:hover {
+      color: #dbdbdb;
+    }
+    &:disabled {
+      color: #4f4f4f;
+      cursor: default;
+    }
   }
-  .iconContainer {
+  .buttonContainer {
     width: 20%;
     display: flex;
     justify-content: space-between;

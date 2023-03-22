@@ -1,0 +1,44 @@
+.container {
+  margin-top: 20px;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .noteZone {
+    width: 250px;
+    height: 150px;
+    border: 1px solid #bababa;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #dbdbdb;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    &:hover {
+      border: 3px solid gold;
+    }
+    .noteZoneTitle {
+      margin: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .noteZoneContent {
+      margin: 5px;
+    }
+  }
+  .title {
+    color: #bababa;
+    margin: 10px 0 5px 0;
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .time {
+    font-size: 15px;
+    font-weight: bold;
+    color: #bababa;
+  }
+}

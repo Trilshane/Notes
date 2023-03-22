@@ -1,36 +1,33 @@
 import { FC, useContext } from "react";
+import { noteType } from "../../App";
 import TitleContext, { contectType } from "../../Context";
 
-import NoteListElement from "./NoteListElement";
-import NoteCreateListElement from "./NoteCreateListElement";
+import NoteCreateTabElement from "./NoteCreateTabElement";
+import NoteTabElement from "./NoteTabElement";
 
-import { noteType } from "../../App";
+import styles from "./scss/NoteTabs.module.scss";
 
-import styles from "./scss/NotesList.module.scss";
-
-const NotesList: FC = () => {
+const NoteTabs: FC = () => {
   const {
-    filteredNotesArr,
-    newNoteIsActiveStatus,
-    titleNote,
-    nowTime,
-    contentNote,
     listView,
+    newNoteIsActiveStatus,
+    nowTime,
+    filteredNotesArr,
+    noteFullScreenStatusView,
   } = useContext<contectType>(TitleContext);
-
   return (
     <>
-      {listView && (
+      {!listView && !noteFullScreenStatusView && (
         <div className={styles.container}>
           {newNoteIsActiveStatus && (
-            <NoteCreateListElement
-              title={titleNote ? titleNote : "Новая задача"}
+            <NoteCreateTabElement
+              title={"Новая задача"}
               time={nowTime}
-              content={contentNote ? contentNote : "нет дополнительного текста"}
+              content={"нет дополнительного текста"}
             />
           )}
           {filteredNotesArr.map((el: noteType) => (
-            <NoteListElement
+            <NoteTabElement
               title={el.title}
               time={el.time}
               content={el.content}
@@ -43,4 +40,4 @@ const NotesList: FC = () => {
     </>
   );
 };
-export default NotesList;
+export default NoteTabs;

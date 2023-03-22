@@ -1,9 +1,17 @@
 import { FC } from "react";
-import { noteType } from "../../App";
 
 import styles from "./scss/NoteListElement.module.scss";
 
-const NoteCreateListElement: FC<noteType> = ({ title, time, content }) => {
+export interface CreateElementType {
+  title: string;
+  time: string;
+  content: string;
+}
+const NoteCreateListElement: FC<CreateElementType> = ({
+  title,
+  time,
+  content,
+}) => {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}> {title}</h2>

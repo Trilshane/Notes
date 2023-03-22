@@ -1,8 +1,9 @@
 import { createContext } from "react";
 import { noteType } from "./App";
+
 export interface contectType {
   query: string;
-  setQuery: React.Dispatch<React.SetStateAction<string>>;
+  setQuery: (value: string) => void;
   titleNote: string;
   setTilteNote: React.Dispatch<React.SetStateAction<string>>;
   contentNote: string;
@@ -26,6 +27,10 @@ export interface contectType {
   changeNoteActiveStatus: boolean;
   setChangeNoteActiveStatus: React.Dispatch<React.SetStateAction<boolean>>;
   deleteNote: () => void;
+  listView: boolean;
+  setListView: React.Dispatch<React.SetStateAction<boolean>>;
+  noteFullScreenStatusView: boolean;
+  setNoteFullScreenStatusView: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const TitleContext = createContext<contectType | null>(null);

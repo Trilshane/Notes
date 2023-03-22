@@ -1,30 +1,46 @@
 .container {
   position: relative;
-  width: 90%;
-  margin: 10px;
-  padding: 10px;
-  background-color: lightgray;
+  width: 85%;
+  margin: 10px 25px 20px 25px;
+  padding: 15px 0 15px 0;
+  color: #bababa;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 2px solid #4f4f4f;
+  cursor: pointer;
+}
+.title {
+  font-size: 25px;
+  padding: 0;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.timeAndContentZone {
+  display: flex;
+  align-items: center;
+  .time {
+    margin-right: 15px;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  .content {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
+.active {
+  background-color: #4f4f4f;
+  position: relative;
+  width: 75%;
+  margin: 10px 25px 20px 25px;
+  padding: 15px 25px 15px 25px;
+  color: #bababa;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  .title {
-    font-size: 25px;
-    padding: 0;
-    margin: 0;
-  }
-  .timeAndContentZone {
-    display: flex;
-    align-items: center;
-    .time {
-      margin-right: 15px;
-      font-size: 15px;
-      font-weight: bold;
-    }
-    .content {
-      width: 100%;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-  }
+  cursor: pointer;
 }

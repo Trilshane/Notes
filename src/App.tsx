@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 
 import NoteZone from "./components/Note/NoteZone";
 import NotesContainer from "./components/Notes/NotesContainer";
@@ -14,15 +14,32 @@ export interface noteType {
 }
 
 const App: FC = () => {
-  const [query, setQuery] = useState<string>("");
-  const [titleNote, setTilteNote] = useState<string>("");
-  const [contentNote, setContentNote] = useState<string>("");
-  const [notesArr, setNotesArr] = useState<noteType[]>([]);
-  const [selectedNote, setSelectedNote] = useState<number | null>(null);
+  const [query, setQuery] = useState<string>(""); // Поиск заметок
+  const [titleNote, setTilteNote] = useState<string>(""); // Заголовок заметки
+  const [contentNote, setContentNote] = useState<string>(""); // Контент заметки
+  const [notesArr, setNotesArr] = useState<noteType[]>([]); // Массив создаваемых заметок
+  const [selectedNote, setSelectedNote] = useState<number | null>(null); // Выбранная заметка для редактирования/удаления
   const [newNoteIsActiveStatus, setNewNoteIsActiveStatus] =
-    useState<boolean>(false);
+    useState<boolean>(false); // Статус создания новой заметки
   const [changeNoteActiveStatus, setChangeNoteActiveStatus] =
+    useState<boolean>(false); // Статус редактирования заметки
+  const [listView, setListView] = useState<boolean>(true); // Статус отображения заметок ввиде списка
+  const [noteFullScreenStatusView, setNoteFullScreenStatusView] =
     useState<boolean>(false);
+  const [mounted, setMountend] = useState<boolean>(false);
+
+  useEffect(() => {
+    setMountend(true);
+    const raw = localStorage.getItem("Array") || JSON.stringify([]);
+    setNotesArr(JSON.parse(raw));
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) {
+      return;
+    }
+    localStorage.setItem("Array", JSON.stringify(notesArr));
+  }, [notesArr]);
 
   const today = new Date();
   const now = today.toLocaleDateString("ru-RU", {
@@ -54,17 +71,6 @@ const App: FC = () => {
   const activeNote: noteType | undefined = filteredNotesArr.find(
     (el) => el.id === selectedNote
   );
-
-  // const updateTiltleNote = (id: number, value: string) => {
-  //   const index = filteredNotesArr.findIndex((el) => el.id === id);
-  //   if (index === -1) {
-  //     return;
-  //   }
-  //   const newNotes: noteType[] = Array.prototype.concat(notesArr);
-  //   newNotes[index].title = value;
-  //   newNotes[index].time = nowTime;
-  //   setNotesArr(newNotes);
-  // };
 
   const updateNote = <K extends keyof noteType, V extends noteType[K]>(
     id: number,
@@ -115,6 +121,10 @@ const App: FC = () => {
         changeNoteActiveStatus,
         setChangeNoteActiveStatus,
         deleteNote,
+        listView,
+        setListView,
+        noteFullScreenStatusView,
+        setNoteFullScreenStatusView,
       }}
     >
       <div className={styles.container}>

@@ -7,14 +7,23 @@
     padding: 7px 10px;
     padding-left: 45px;
     border-radius: 10px;
+    background-color: #525252;
+    color: #bababa;
+    outline: none;
   }
   .icon {
     position: absolute;
     left: 10px;
     font-size: 18px;
+    color: #bababa;
   }
   .iconCross {
     left: 90%;
     cursor: pointer;
+    color: #bababa;
+    font-weight: bold;
+    &:hover {
+      color: #dbdbdb;
+    }
   }
 }
