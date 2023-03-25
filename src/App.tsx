@@ -15,7 +15,7 @@ export interface noteType {
 
 const App: FC = () => {
   const [query, setQuery] = useState<string>(""); // Поиск заметок
-  const [titleNote, setTilteNote] = useState<string>(""); // Заголовок заметки
+  const [titleNote, setTilteNote] = useState<string>("# "); // Заголовок заметки
   const [contentNote, setContentNote] = useState<string>(""); // Контент заметки
   const [notesArr, setNotesArr] = useState<noteType[]>([]); // Массив создаваемых заметок
   const [selectedNote, setSelectedNote] = useState<number | null>(null); // Выбранная заметка для редактирования/удаления
