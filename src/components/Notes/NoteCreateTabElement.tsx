@@ -10,7 +10,7 @@ const NoteCreateTabElement: FC<CreateElementType> = ({
   content,
 }) => {
   const { setNoteFullScreenStatusView, setNewNoteIsActiveStatus } =
-    useContext<contectType>(TitleContext!);
+    useContext<contectType>(TitleContext);
   return (
     <div className={styles.container}>
       <div
