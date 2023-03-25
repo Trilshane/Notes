@@ -6,7 +6,7 @@ import TitleContext, { contectType } from "../../Context";
 
 import styles from "./scss/InputNoteHead.module.scss";
 
-const InputNoteHead: FC = () => {
+const InputNoteHead = () => {
   const { query, setQuery } = useContext<contectType>(TitleContext);
   return (
     <div className={styles.container}>

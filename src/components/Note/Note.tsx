@@ -1,5 +1,6 @@
 import { FC, useContext } from "react";
 import TitleContext, { contectType } from "../../Context";
+import RenderHeader from "./RenderNote";
 
 import styles from "./scss/Note.module.scss";
 
@@ -25,15 +26,8 @@ const Note: FC = () => {
             <span className={styles.date}>{now}</span>в
             <span className={styles.time}>{nowTime}</span>
           </div>
-          <input
-            className={styles.title}
-            type="text"
-            placeholder="Заголовок"
-            value={titleNote}
-            onChange={(e) => {
-              setTilteNote(e.target.value);
-            }}
-          />
+          <RenderHeader />
+
           {titleNote && (
             <textarea
               className={styles.content}
@@ -50,14 +44,15 @@ const Note: FC = () => {
             <span className={styles.date}>{now}</span>
             <span className={styles.time}>{nowTime}</span>
           </div>
-          <input
+          <div
             className={styles.title}
-            type="text"
-            value={activeNote.title}
+            contentEditable='true'
             onChange={(e) =>
               updateNote(activeNote?.id, "title", e.target.value)
             }
-          />
+          >
+            {activeNote.title}
+          </div>
           <textarea
             className={styles.content}
             placeholder="Начните ввод"
