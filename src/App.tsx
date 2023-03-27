@@ -15,7 +15,6 @@ export interface noteType {
 
 const App: FC = () => {
   const [query, setQuery] = useState<string>(""); // Поиск заметок
-  const [titleNote, setTilteNote] = useState<string>("# "); // Заголовок заметки
   const [contentNote, setContentNote] = useState<string>(""); // Контент заметки
   const [notesArr, setNotesArr] = useState<noteType[]>([]); // Массив создаваемых заметок
   const [selectedNote, setSelectedNote] = useState<number | null>(null); // Выбранная заметка для редактирования/удаления
@@ -27,6 +26,9 @@ const App: FC = () => {
   const [noteFullScreenStatusView, setNoteFullScreenStatusView] =
     useState<boolean>(false);
   const [mounted, setMountend] = useState<boolean>(false);
+  const [rowTitle, setRowTitle] = useState<string>("# ");
+  const [titleNote, setTilteNote] = useState<string>(rowTitle.split(" ")[1]); // Заголовок заметки
+  const [rawContent, setRawContent] = useState<string>(" ");
 
   useEffect(() => {
     setMountend(true);
@@ -60,7 +62,7 @@ const App: FC = () => {
       id: +today,
     };
     setNotesArr([newNote, ...notesArr]);
-    setTilteNote("");
+    setRowTitle("# ");
     setContentNote("");
   };
 
@@ -125,6 +127,10 @@ const App: FC = () => {
         setListView,
         noteFullScreenStatusView,
         setNoteFullScreenStatusView,
+        rowTitle,
+        setRowTitle,
+        rawContent,
+        setRawContent,
       }}
     >
       <div className={styles.container}>

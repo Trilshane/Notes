@@ -1,6 +1,7 @@
-import { FC, useContext } from "react";
+import { FC, useContext, useEffect } from "react";
 import TitleContext, { contectType } from "../../Context";
-import RenderHeader from "./RenderNote";
+import RenderContent from "./RenderContent";
+import RenderHeader from "./RenderHeader";
 
 import styles from "./scss/Note.module.scss";
 
@@ -16,6 +17,7 @@ const Note: FC = () => {
     changeNoteActiveStatus,
     activeNote,
     updateNote,
+    rowTitle,
   } = useContext<contectType>(TitleContext);
 
   return (
@@ -27,15 +29,7 @@ const Note: FC = () => {
             <span className={styles.time}>{nowTime}</span>
           </div>
           <RenderHeader />
-
-          {titleNote && (
-            <textarea
-              className={styles.content}
-              placeholder="Начните ввод"
-              value={contentNote}
-              onChange={(e) => setContentNote(e.target.value)}
-            />
-          )}
+          {rowTitle && <RenderContent />}
         </div>
       )}
       {changeNoteActiveStatus && (
@@ -44,14 +38,15 @@ const Note: FC = () => {
             <span className={styles.date}>{now}</span>
             <span className={styles.time}>{nowTime}</span>
           </div>
+
           <div
             className={styles.title}
-            contentEditable='true'
-            onChange={(e) =>
-              updateNote(activeNote?.id, "title", e.target.value)
-            }
+            contentEditable="true"
+            onInput={(e) => {
+              updateNote(activeNote?.id, "title", e.target.textContent);
+            }}
           >
-            {activeNote.title}
+            {activeNote?.title}
           </div>
           <textarea
             className={styles.content}

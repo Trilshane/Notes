@@ -12,10 +12,10 @@ const NotesList: FC = () => {
   const {
     filteredNotesArr,
     newNoteIsActiveStatus,
-    titleNote,
     nowTime,
     contentNote,
     listView,
+    rowTitle,
   } = useContext<contectType>(TitleContext);
 
   return (
@@ -24,14 +24,16 @@ const NotesList: FC = () => {
         <div className={styles.container}>
           {newNoteIsActiveStatus && (
             <NoteCreateListElement
-              title={titleNote ? titleNote : "Новая задача"}
+              title={
+                rowTitle !== "## " ? rowTitle.split(" ")[1] : "Новая задача"
+              }
               time={nowTime}
               content={contentNote ? contentNote : "нет дополнительного текста"}
             />
           )}
           {filteredNotesArr.map((el: noteType) => (
             <NoteListElement
-              title={el.title}
+              title={el.title.split(" ")[1]}
               time={el.time}
               content={el.content}
               key={el.id}

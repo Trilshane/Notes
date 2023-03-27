@@ -21,6 +21,7 @@ const NotesHead: FC = () => {
     setListView,
     selectedNote,
     setSelectedNote,
+    rowTitle,
   } = useContext<contectType>(TitleContext);
 
   return (
@@ -28,7 +29,7 @@ const NotesHead: FC = () => {
       <div className={styles.buttonContainer}>
         <button
           disabled={
-            (titleNote === "" && newNoteIsActiveStatus) ||
+            (rowTitle === "## " && newNoteIsActiveStatus) ||
             (noteFullScreenStatusView && !newNoteIsActiveStatus)
           }
           onClick={() => {
@@ -37,11 +38,11 @@ const NotesHead: FC = () => {
               setChangeNoteActiveStatus(false);
             }
             if (newNoteIsActiveStatus) {
-              addNoteinArray(titleNote, nowTime, contentNote);
+              addNoteinArray(rowTitle, nowTime, contentNote);
               setNewNoteIsActiveStatus(false);
             }
             if (noteFullScreenStatusView) {
-              addNoteinArray(titleNote, nowTime, contentNote);
+              addNoteinArray(rowTitle, nowTime, contentNote);
               setNoteFullScreenStatusView(false);
               setListView(false);
             }

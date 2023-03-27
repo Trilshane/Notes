@@ -31,6 +31,10 @@ export interface contectType {
   setListView: React.Dispatch<React.SetStateAction<boolean>>;
   noteFullScreenStatusView: boolean;
   setNoteFullScreenStatusView: React.Dispatch<React.SetStateAction<boolean>>;
+  rowTitle: string;
+  setRowTitle: React.Dispatch<React.SetStateAction<string>>;
+  rawContent: string;
+  setRawContent: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const TitleContext = createContext<contectType | null>(null);
